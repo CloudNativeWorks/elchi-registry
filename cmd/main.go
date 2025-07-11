@@ -15,8 +15,6 @@ import (
 // Version information
 var (
 	Version   = "1.0.0"
-	GitCommit = "unknown"
-	BuildTime = "unknown"
 )
 
 func main() {
@@ -30,8 +28,6 @@ func main() {
 	if *showVersion {
 		fmt.Printf("Registry Service\n")
 		fmt.Printf("Version: %s\n", Version)
-		fmt.Printf("Git Commit: %s\n", GitCommit)
-		fmt.Printf("Build Time: %s\n", BuildTime)
 		os.Exit(0)
 	}
 

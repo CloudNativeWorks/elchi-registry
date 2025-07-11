@@ -64,10 +64,8 @@ func (s *RegistryService) SetClientLocation(ctx context.Context, clientID, contr
 		return fmt.Errorf("controller ID cannot be empty")
 	}
 
-	// Verify controller exists
-	_, err := s.storage.GetController(ctx, controllerID)
-	if err != nil {
-		return fmt.Errorf("controller not found: %s", controllerID)
+	if ctx.Err() != nil {
+		return ctx.Err()
 	}
 
 	location := &models.ClientLocation{
@@ -80,7 +78,7 @@ func (s *RegistryService) SetClientLocation(ctx context.Context, clientID, contr
 
 func (s *RegistryService) GetClientLocation(ctx context.Context, clientID string) (*models.ClientLocation, error) {
 	clientLocation, err := s.storage.GetClientLocation(ctx, clientID)
-	s.logger.Infof("Getting client location: %s, %v", clientLocation, err)
+	s.logger.Debugf("Getting client location: %s, %v", clientLocation, err)
 	return clientLocation, err
 }
 
